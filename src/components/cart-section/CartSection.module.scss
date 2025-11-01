@@ -1,0 +1,186 @@
+@import "../../breakpoints.scss";
+
+.container {
+  width: 30%;
+  @media (width < $lg) {
+    width: 40%;
+  }
+  @media (width < $sm) {
+    width: 100%;
+  }
+
+  .box {
+    @apply sticky top-5 rounded-lg bg-white p-3 md:p-4 xl:p-5;
+
+    .heroTitle {
+      @apply mb-6 text-xl font-semibold text-red lg:text-2xl;
+    }
+
+    .wrapper {
+      @apply relative;
+
+      .fillState {
+        @apply invisible opacity-0 transition duration-500;
+
+        .itemsContainer {
+          .itemWrapper {
+            @apply overflow-hidden;
+
+            .item {
+              @apply relative flex items-center justify-between overflow-hidden py-4 lg:py-5;
+              animation: in 0.4s cubic-bezier(0.01, 0.96, 0.61, 0.88);
+
+              .content {
+                .title {
+                  @apply text-sm font-medium text-rose-900;
+                }
+
+                .bottomTextContainer {
+                  @apply mt-1 flex items-center gap-x-3 text-sm;
+
+                  .quantity {
+                    @apply w-7 font-semibold text-red;
+                  }
+
+                  .priceSub {
+                    @apply text-rose-300;
+                  }
+
+                  .priceMain {
+                    @apply font-medium text-rose-500;
+                  }
+                }
+              }
+
+              .cancelBtn {
+                @apply flex h-4 w-4 items-center justify-center rounded-full border border-rose-400 transition duration-300 md:h-5 md:w-5;
+
+                i {
+                  @apply text-rose-400 transition duration-300;
+                  font-size: 0.7rem;
+                  @media (width < $md) {
+                    font-size: 0.5rem;
+                  }
+                }
+
+                &:hover {
+                  @apply scale-105 border-rose-900 shadow;
+
+                  i {
+                    @apply text-rose-900;
+                  }
+                }
+              }
+
+              &:before {
+                @apply absolute bottom-0 w-full bg-rose-100;
+                content: "";
+                height: 1px;
+              }
+            }
+
+            &:first-child {
+              .item {
+                @apply pt-0;
+              }
+            }
+          }
+        }
+
+        .orderContainer {
+          @apply my-7 flex items-center justify-between;
+
+          .field {
+            @apply text-sm font-medium text-rose-500;
+          }
+
+          .value {
+            @apply text-xl font-bold text-rose-900;
+          }
+        }
+
+        .badge {
+          @apply flex items-center justify-center gap-x-2 rounded-md bg-rose-50 py-3;
+
+          .text {
+            @apply text-xs text-rose-900 md:text-sm;
+
+            .active {
+              @apply font-semibold;
+            }
+          }
+        }
+
+        .btn {
+          @apply relative mt-7 w-full overflow-hidden rounded-full bg-red py-2 font-medium text-rose-50 transition duration-300 md:py-3;
+
+          span {
+            @apply relative right-0 transition-all duration-300;
+          }
+
+          .loadingIcon {
+            @apply invisible absolute bottom-0 top-0 my-auto h-7 w-7 opacity-0 transition duration-300;
+            right: 15%;
+          }
+
+          &:before {
+            @apply absolute bottom-full left-0 h-full w-full rounded-full transition-all duration-200;
+            content: "";
+            background-color: hsl(14, 86%, 30%);
+          }
+
+          &:hover:not(.loading) {
+            &:before {
+              @apply bottom-0;
+            }
+          }
+
+          &.loading {
+            @apply bg-red/60;
+
+            span {
+              @apply right-4;
+            }
+
+            .loadingIcon {
+              @apply visible opacity-100;
+            }
+          }
+        }
+      }
+
+      .emptyState {
+        @apply visible absolute left-0 right-0 top-0 mx-auto opacity-100 transition duration-500;
+
+        img {
+          @apply mx-auto;
+        }
+
+        span {
+          @apply my-3 block text-center text-sm font-medium text-rose-500;
+        }
+      }
+
+      &.active {
+        .fillState {
+          // show
+          @apply visible opacity-100;
+        }
+
+        .emptyState {
+          // hide
+          @apply invisible opacity-0;
+        }
+      }
+    }
+  }
+}
+
+@keyframes in {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
