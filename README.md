@@ -7,10 +7,15 @@ A responsive dessert selection application with a functional shopping cart. User
 ## Features
 
 🛒 Add and remove items from the cart
+
 🔢 Adjust item quantities dynamically
+
 ✅ View an order confirmation modal
+
 🔄 Reset selections with “Start New Order”
+
 ⌨️ Full keyboard navigation support
+
 📱 Optimized layout for all screen sizes
 
 ✨ Data populated dynamically from `data.json`
